@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie-Free YouTube Viewer</title>
+    <style>
+        body { display: flex; flex-direction: column; align-items: center; }
+        iframe { width: 80%; height: 400px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Cookie-Free YouTube Viewer</h1>
+    <input type="text" id="video-url" placeholder="Paste YouTube link here">
+    <button id="load-video">Load Video</button>
+    <iframe id="youtube-video" src="" frameborder="0" allowfullscreen></iframe>
+
+    <script>
+        document.getElementById("load-video").addEventListener("click", function() {
+            const url = document.getElementById("video-url").value;
+            const videoId = new URL(url).searchParams.get("v");
+            if (videoId) {
+                document.getElementById("youtube-video").src = `https://www.youtube-nocookie.com/embed/${videoId}`;
+            } else {
+                alert("Please enter a valid YouTube URL.");
+            }
+        });
+    </script>
+</body>
+</html>
